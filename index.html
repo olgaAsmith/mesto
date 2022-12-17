@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="pages/index.css">
+  <title>Mesto</title>
+</head>
+<body class="body">
+  <div class="page">
+    <header class="header">
+      <a href="index.html" class="header__logo"></a>
+    </header>
+    <main class="content">
+      <section class="account">
+          <img src="images/avatar.jpg" alt="Аватар" class="image account__image">
+          <div class="account__owner">
+            <p class="text account__name">Жак-Ив Кусто</p>
+            <button class="button account__edit"></button>
+            <p class="text account__profession">Исследователь океана</p>
+          </div>
+          <button class="button account__add-image">
+            <div class="account__add-cross"></div>
+          </button>
+      </section>
+      <section class="gallery">
+        <ul class="list gallery__items">
+          <li class="gallery__item">
+            <img src="images/gallery-dombay.jpg" alt="Домбай" class="image gallery__item-image">
+            <div class="gallery__info">
+              <p class="text gallery__item-name">Домбай</p>
+              <div class="gallery__item-like"></div>
+            </div>
+          </li>
+          <li class="gallery__item">
+            <img src="images/gallery-elbrus.jpg" alt="Гора Эльбрус" class="image gallery__item-image">
+            <div class="gallery__info">
+              <p class="text gallery__item-name">Гора Эльбрус</p>
+              <div class="gallery__item-like"></div>
+            </div>
+          </li>
+          <li class="gallery__item">
+            <img src="images/gallery-karachaevsk.jpg" alt="Карачаевск" class="image gallery__item-image">
+            <div class="gallery__info">
+              <p class="text gallery__item-name">Карачаево-Чачаевск</p>
+              <div class="gallery__item-like"></div>
+            </div>
+          </li>
+          <li class="gallery__item">
+            <img src="images/gallery-dombay.jpg" alt="Домбай" class="image gallery__item-image">
+            <div class="gallery__info">
+              <p class="text gallery__item-name">Домбай</p>
+              <div class="gallery__item-like"></div>
+            </div>
+          </li>
+          <li class="gallery__item">
+            <img src="images/gallery-elbrus.jpg" alt="Гора Эльбрус" class="image gallery__item-image">
+            <div class="gallery__info">
+              <p class="text gallery__item-name">Гора Эльбрус</p>
+              <div class="gallery__item-like"></div>
+            </div>
+          </li>
+          <li class="gallery__item">
+            <img src="images/gallery-karachaevsk.jpg" alt="Карачаевск" class="image gallery__item-image">
+            <div class="gallery__info">
+              <p class="text gallery__item-name">Карачаевск</p>
+              <div class="gallery__item-like"></div>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="text footer__copyright">© 2020 Mesto Russia</p>
+    </footer>
+  </div>
+  <div class="pop-up">
+    <div class="pop-up__place">
+      <div class="pop-up__window">
+        <div class="pop-up__window-content">
+          <p class="pop-up__title text">Редактировать профиль</p>
+          <form action="" class="pop-up__form">
+            <input class="pop-up__input" type="text" autofocus value="Жак-Ив Кусто" name="account-name">
+            <input class="pop-up__input" type="text" value="Исследователь океана" name="account-prof">
+            <button class="pop-up__save button">Сохранить</button>
+          </form>
+        </div>
+        <div class="pop-up__close-button button"></div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
