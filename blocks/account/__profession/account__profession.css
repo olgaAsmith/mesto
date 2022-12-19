@@ -1,0 +1,18 @@
+.account__profession { /*до инфо аккаунта*/
+  white-space: nowrap; /*многоточие не переносить*/
+  overflow: hidden;/*многоточие спрятать переполнение*/
+  text-overflow: ellipsis;/*многоточие как прерывается текст - ...*/
+  max-width: 400px;
+  line-height: 22px;
+  margin-top: 16px;
+}
+
+@media screen and (max-width: 480px){
+  .account__profession {
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 5px;
+    margin-bottom: 34px;
+    margin-left: 20px;/*PP*/
+  }
+}

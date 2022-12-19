@@ -13,9 +13,9 @@ function openPopUp() { //открытие popup
   inputName.style.border = 'none';
   inputProf.style.border = 'none';
   inputName.style.borderBottom = '1px solid rgba(0, 0, 0, 0.15)';
-  inputProf.style.borderBottom = '1px solid rgba(0, 0, 0, 0.15)';//присвоить значение со страницы в инпут, а такде вернуть исходные свойства. даже если будут изменения в инпутах при закрытии, или при неправильном наборе данных, будет всегда открываться с значением из переменной на основной странице
-  popUp.classList.add('pop-up_active'); //добавляем класс
-  popUp.querySelector('.pop-up__input-name').focus();//фокус на первый инпут
+  inputProf.style.borderBottom = '1px solid rgba(0, 0, 0, 0.15)';//присвоить значение со страницы в инпут, а также вернуть исходные свойства. даже если будут изменения в инпутах при закрытии, или при неправильном наборе данных, будет всегда открываться с значением из переменной на основной странице
+    popUp.querySelector('.pop-up__input-name').focus();//фокус на первый инпут
+    popUp.classList.add('pop-up_active'); //добавляем класс
 };
 
 function closePopUp() {// закрыть popup
@@ -37,28 +37,26 @@ document.addEventListener('keydown', function(event) {
      closePopUp();
   }});//закрытие по клавише escape
 
+function changes() {//сохранение данных в имя и проф из инпута
+  if (inputName.value.length <= 1){
+    inputName.style.border = '1px solid red';
+    return;//ошибка при наборе 1 символа
 
+  }
 
-function changes() {
-    if (inputName.value.length <= 1){
-      inputName.style.border = '1px solid red';
-      return;//ошибка
+  if (inputProf.value.length <= 2){
+    inputProf.style.border = '1px solid red';
+    return;//ошибка при наборе 2 символов
+  }
 
-    }
+  if ((accountName.textContent === inputName.value) && (accountProf.textContent === inputProf.value)) {
+    closePopUp();//если инпут не изменилсмя, выход
+  }
 
-    if (inputProf.value.length <= 2){
-      inputProf.style.border = '1px solid red';
-      return;//ошибка
-    }
-
-    if ((accountName.textContent === inputName.value) && (accountProf.textContent === inputProf.value)) {
-      closePopUp();//если инпут не изменилсмя, выход
-    }
-
-    if ((accountName.textContent !== inputName.value) || (accountProf.textContent !== inputProf.value)) {
-      accountName.textContent = inputName.value;
-      accountProf.textContent = inputProf.value;
-      closePopUp();//если инпут изменилсмя, присвоить новое значение инпута имени на странице и закрыть окно
+  if ((accountName.textContent !== inputName.value) || (accountProf.textContent !== inputProf.value)) {
+    accountName.textContent = inputName.value;
+    accountProf.textContent = inputProf.value;
+    closePopUp();//если инпут изменилсмя, присвоить новое значение инпута имени на странице и закрыть окно
   }};
 
 saveButton.addEventListener('click', changes);//кнопка сохранить в окне

@@ -1,0 +1,48 @@
+.account__add-cross { /*крест псевдо*/
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 480px){
+  .account__add-cross {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.account__add-cross:before { /*горизонтальная линия*/
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 22px;
+  height: 2px;
+  background: #FFF;
+}
+
+@media screen and (max-width: 480px){
+  .account__add-cross:before {
+    top: 7px;
+    width: 16px;
+  }
+}
+
+.account__add-cross:after { /*вертикальная линия*/
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10px;
+  width: 2px;
+  height: 22px;
+  background: #FFF;
+}
+
+@media screen and (max-width: 480px){
+  .account__add-cross:after {
+    left: 7px;
+    height: 16px;
+  }
+}

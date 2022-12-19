@@ -1,0 +1,5 @@
+.account__owner {
+  display: grid;
+  grid-template-columns: minmax(min-content, max-content) 1fr;
+  align-items: baseline;
+}

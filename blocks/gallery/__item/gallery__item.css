@@ -1,0 +1,11 @@
+.gallery__item {
+  background-color: #FFF;
+  border-radius: 3%; /*резка углов*/
+  color: #000;
+}
+
+@media screen and (max-width: 480px){
+  .gallery__item { /*PixelPerfect*/
+    height: 361px;
+  }
+}
