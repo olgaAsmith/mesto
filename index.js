@@ -41,7 +41,6 @@ function changes() {//сохранение данных в имя и проф и
   if (inputName.value.length <= 1){
     inputName.style.border = '1px solid red';
     return;//ошибка при наборе 1 символа
-
   }
 
   if (inputProf.value.length <= 2){
