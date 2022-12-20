@@ -1,5 +1,7 @@
 .account__profession { /*до инфо аккаунта*/
-  display: inline-block;white-space: nowrap;/*многоточие не переносить*/overflow: hidden;/*многоточие спрятать переполнение*/
+  display: inline-block;
+  white-space: nowrap;/*многоточие не переносить*/
+  overflow: hidden;/*многоточие спрятать переполнение*/
   text-overflow: ellipsis;/*многоточие как прерывается текст - ...*/
   max-width: 400px;
   line-height: 22px;
