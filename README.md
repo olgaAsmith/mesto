@@ -4,7 +4,7 @@
 ------
 ------
 #### Github Pages
-*https://olgaasmith.github.io/*
+*https://olgaasmith.github.io/mesto/*
 ------
 ------
 #### О чем?
