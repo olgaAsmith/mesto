@@ -5,6 +5,6 @@
 
 @media screen and (max-width: 940px){
   .content {
-    width: 90%;
+    width: calc(100% - 38px);
   }
 }

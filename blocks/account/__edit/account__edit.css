@@ -12,7 +12,18 @@
   .account__edit {
     width: 18px;
     height: 18px;
-    margin-left: 5px;
+    margin-left: 10px;
   }
 }
 
+@-moz-document url-prefix() {
+  .account__edit {
+    margin-top: 10px;
+  }
+
+  @media screen and (max-width: 480px){
+    .account__edit {
+      margin-top: 6px;
+    }
+  }
+}

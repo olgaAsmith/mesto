@@ -6,6 +6,6 @@
 
 @media screen and (max-width: 480px){
   .gallery__item { /*PixelPerfect*/
-    height: 361px;
+    min-height: 361px;
   }
 }

@@ -1,4 +1,4 @@
 .gallery__item-image {
   display: block; /*делаем блочным в диве*/
-  border-radius: 3%;
+  border-radius: 3% 3% 0 0;
 }
