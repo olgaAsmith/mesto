@@ -10,84 +10,80 @@
 <body class="body">
   <div class="page">
     <header class="header">
-      <a href="index.html" class="header__logo"></a>
+      <a href="#!" class="header__logo"></a>
     </header>
     <main class="content">
       <section class="account">
-          <img src="images/avatar.jpg" alt="Аватар" class="image account__image">
+          <img src="images/avatar.jpg" alt="Аватар" class="account__image">
           <div class="account__owner">
-            <h1 class="text account__name">Жак-Ив Кусто</h1>
-            <button class="button account__edit"></button>
-            <p class="text account__profession">Исследователь океана</p>
+            <h1 class="account__name">Жак-Ив Кусто</h1>
+            <button class="button account__edit" type="button"></button>
+            <p class="account__profession">Исследователь океана</p>
           </div>
-          <button class="button account__add-image">
-            <span class="account__add-cross"></span>
-          </button>
+          <button class="button account__add-image" type="button"></button>
       </section>
       <section class="gallery">
         <ul class="list gallery__items">
           <li class="gallery__item">
-            <img src="images/gallery-dombay.jpg" alt="Домбай" class="image gallery__item-image">
+            <img src="images/gallery-dombay.jpg" alt="Домбай" class="gallery__item-image">
             <div class="gallery__info">
-              <p class="text gallery__item-name">Домбай</p>
-              <div class="gallery__item-like"></div>
+              <h2 class="gallery__item-name">Домбай</h2>
+              <button class="button gallery__item-like" type="button"></button>
             </div>
           </li>
           <li class="gallery__item">
-            <img src="images/gallery-elbrus.jpg" alt="Гора Эльбрус" class="image gallery__item-image">
+            <img src="images/gallery-elbrus.jpg" alt="Гора Эльбрус" class="gallery__item-image">
             <div class="gallery__info">
-              <p class="text gallery__item-name">Гора Эльбрус</p>
-              <div class="gallery__item-like"></div>
+              <h2 class="gallery__item-name">Гора Эльбрус</h2>
+              <button class="button gallery__item-like" type="button"></button>
             </div>
           </li>
           <li class="gallery__item">
-            <img src="images/gallery-karachaevsk.jpg" alt="Карачаевск" class="image gallery__item-image">
+            <img src="images/gallery-karachaevsk.jpg" alt="Карачаевск" class="gallery__item-image">
             <div class="gallery__info">
-              <p class="text gallery__item-name">Карачаево-Чачаевск</p>
-              <div class="gallery__item-like"></div>
+              <h2 class="gallery__item-name">Карачаево-Чачаевск</h2>
+              <button class="button gallery__item-like" type="button"></button>
             </div>
           </li>
           <li class="gallery__item">
-            <img src="images/gallery-dombay.jpg" alt="Домбай" class="image gallery__item-image">
+            <img src="images/gallery-dombay.jpg" alt="Домбай" class="gallery__item-image">
             <div class="gallery__info">
-              <p class="text gallery__item-name">Домбай</p>
-              <div class="gallery__item-like"></div>
+              <h2 class="gallery__item-name">Домбай</h2>
+              <button class="button gallery__item-like" type="button"></button>
             </div>
           </li>
           <li class="gallery__item">
-            <img src="images/gallery-elbrus.jpg" alt="Гора Эльбрус" class="image gallery__item-image">
+            <img src="images/gallery-elbrus.jpg" alt="Гора Эльбрус" class="gallery__item-image">
             <div class="gallery__info">
-              <p class="text gallery__item-name">Гора Эльбрус</p>
-              <div class="gallery__item-like"></div>
+              <h2 class="gallery__item-name">Гора Эльбрус</h2>
+              <button class="button gallery__item-like" type="button"></button>
             </div>
           </li>
           <li class="gallery__item">
-            <img src="images/gallery-karachaevsk.jpg" alt="Карачаевск" class="image gallery__item-image">
+            <img src="images/gallery-karachaevsk.jpg" alt="Карачаевск" class="gallery__item-image">
             <div class="gallery__info">
-              <p class="text gallery__item-name">Карачаевск</p>
-              <div class="gallery__item-like"></div>
+              <h2 class="gallery__item-name">Карачаевск</h2>
+              <button class="button gallery__item-like" type="button"></button>
             </div>
           </li>
         </ul>
       </section>
     </main>
     <footer class="footer">
-      <p class="text footer__copyright">© 2020 Mesto Russia</p>
+      <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
   </div>
-  <div class="pop-up">
-      <div class="pop-up__window">
-        <div class="pop-up__window-content">
-          <p class="pop-up__title text">Редактировать профиль</p>
-          <form action="#" class="pop-up__form">
-            <input class="pop-up__input pop-up__input-name" type="text" autofocus value="" name="account-name">
-            <input class="pop-up__input pop-up__input-prof" type="text" value="" name="account-prof">
-            <button type="button" class="pop-up__save button">Сохранить</button>
-          </form>
-        </div>
-        <div class="pop-up__close-button button"></div>
-      </div>
+  <div class="popup">
+    <div class="popup__container">
+      <h3 class="popup__title">Редактировать профиль</h3>
+      <form action="#" class="popup__form" name="profile">
+        <input class="popup__input popup__input_tag_name" type="text" autofocus value="" name="account-name" required placeholder="Ваше имя">
+        <input class="popup__input popup__input_tag_prof" type="text" value="" name="account-prof" required placeholder="Ваш род деятельности">
+        <button class="popup__save button" type="submit">Сохранить</button>
+      </form>
+      <div class="popup__close-button button" type="button"></div>
+    </div>
   </div>
-  <script src="index.js"></script>
+  <script src="javascript/index.js"></script>
 </body>
 </html>

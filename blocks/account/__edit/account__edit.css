@@ -2,10 +2,16 @@
   display: inline-block; /*размещение после текста*/
   width: 24px;
   height: 24px;
-  background: no-repeat url(../../../images/editor.png);
+  background: no-repeat url(../../../images/editor.svg);
   background-position: center;
   border: 1px #FFF solid;
   margin-left: 18px;
+}
+
+@-moz-document url-prefix() {
+  .account__edit {
+    margin-top: 10px;
+  }
 }
 
 @media screen and (max-width: 480px){
@@ -14,16 +20,12 @@
     height: 18px;
     margin-left: 10px;
   }
-}
 
-@-moz-document url-prefix() {
-  .account__edit {
-    margin-top: 10px;
-  }
-
-  @media screen and (max-width: 480px){
+  @-moz-document url-prefix() {
     .account__edit {
-      margin-top: 6px;
+       margin-top: 6px;
+      }
     }
   }
-}
+
+

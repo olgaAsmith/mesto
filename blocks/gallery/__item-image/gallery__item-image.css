@@ -1,4 +1,6 @@
 .gallery__item-image {
   display: block; /*делаем блочным в диве*/
+  width: 100%;
   border-radius: 3% 3% 0 0;
+  object-fit: cover;
 }

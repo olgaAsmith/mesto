@@ -1,13 +1,14 @@
-.pop-up__close-button {
+.popup__close-button {
   position: absolute; /*расположить псевдоэлементы*/
   width: 32px;
   height: 32px;
   top: -40px;
   right: -40px;
+  background-color: transparent;
   margin: 0 auto;
 }
 
-.pop-up__close-button:before { /*праая палочка Х*/
+.popup__close-button:before { /*праая палочка Х*/
   content: "";
   width: 41px;
   height: 4.5px;
@@ -18,7 +19,7 @@
   rotate: -45deg; /*горизонталь  0-45о направо*/
 }
 
-.pop-up__close-button:after { /*левая палочка Х*/
+.popup__close-button:after { /*левая палочка Х*/
   content: "";
   width: 41px;
   height: 4.5px;
@@ -30,21 +31,21 @@
 }
 
 @media screen and (max-width: 620px){
-  .pop-up__close-button { /*PixelPerfect натсройка*/
+  .popup__close-button { /*PixelPerfect натсройка*/
     width: 20px;
     height: 20px;
     right: 4px;
     top: -40px;
   }
 
-  .pop-up__close-button:before {
+  .popup__close-button:before {
     width: 26px;
     height: 3.5px;
     top: 10px;
     left: -2px;
   }
 
-  .pop-up__close-button:after {
+  .popup__close-button:after {
     width: 26px;
     height: 3.5px;
     top: 10px;

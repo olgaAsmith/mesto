@@ -1,4 +1,4 @@
-.pop-up__save { /*кнопка сохранитьt*/
+.popup__save { /*кнопка сохранитьt*/
   width: 100%;
   min-height: 50px;
   border-radius: 2px;
@@ -8,12 +8,12 @@
   margin-top: 48px;
 }
 
-.pop-up__save:hover {
+.popup__save:hover {
   opacity: .8;
 }
 
 @media screen and (max-width: 620px){
-  .pop-up__save {
+  .popup__save {
     font-size: 14px;
     line-height: 17px;
     margin-top: 45px;

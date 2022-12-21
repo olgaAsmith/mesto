@@ -1,8 +1,9 @@
-.gallery__item-like { /*лайк фотки*/
+.gallery__item-like {
   justify-self: end;
   width: 22px;
   height: 19px;
-  background-image: url(../../../images/like.png);
+  background-image: url(../../../images/like.svg);
+  background-color: transparent;
 }
 
 .gallery__item-like:hover {

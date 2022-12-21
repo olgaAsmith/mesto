@@ -5,7 +5,7 @@
   text-overflow: ellipsis;/*многоточие как прерывается текст - ...*/
   max-width: 400px;
   line-height: 22px;
-  margin-top: 16px;
+  margin: 16px 0 0 0;
 }
 
 @media screen and (max-width: 480px){
@@ -13,8 +13,6 @@
     max-width: 200px;
     font-size: 14px;
     line-height: 17px;
-    margin-top: 5px;
-    margin-bottom: 34px;
-    margin-left: 26px;/*PP*/
+    margin: 5px 0 34px 26px;
   }
 }
