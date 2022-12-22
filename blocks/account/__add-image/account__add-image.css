@@ -11,5 +11,6 @@
 @media screen and (max-width: 760px){
   .account__add-image {
     width: 100%;
+    background-size: 16px 16px;
   }
 }

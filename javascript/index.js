@@ -7,10 +7,10 @@ let formElement = document.querySelector('.popup__form');// Воспользуй
 // Находим поля формы в DOM
 let nameInput = popUp.querySelector('.popup__input_tag_name');// Воспользуйтесь инструментом .querySelector()
 let jobInput = popUp.querySelector('.popup__input_tag_prof');// Воспользуйтесь инструментом .querySelector()
-nameInput.value = nameAccount.textContent;
-jobInput.value = jobAccount.textContent;
 
 function openPopUp() { //открытие popup
+  nameInput.value = nameAccount.textContent;
+  jobInput.value = jobAccount.textContent;
   popUp.classList.add('popup_opened'); //добавляем класс
 };
 
@@ -30,7 +30,7 @@ function handleFormSubmit (evt) {
     // Выберите элементы, куда должны быть вставлены значения полей
     nameAccount.textContent = name;
     jobAccount.textContent = job;     // Вставьте новые значения с помощью textContent
-    popUp.classList.remove('popup_opened');
+    closePopUp();
 }
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
