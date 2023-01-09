@@ -24,48 +24,16 @@
       </section>
       <section class="gallery">
         <ul class="list gallery__items">
-          <li class="gallery__item">
-            <img src="images/gallery-dombay.jpg" alt="Домбай" class="gallery__item-image">
-            <div class="gallery__info">
-              <h2 class="gallery__item-name">Домбай</h2>
-              <button class="button gallery__item-like" type="button"></button>
-            </div>
-          </li>
-          <li class="gallery__item">
-            <img src="images/gallery-elbrus.jpg" alt="Гора Эльбрус" class="gallery__item-image">
-            <div class="gallery__info">
-              <h2 class="gallery__item-name">Гора Эльбрус</h2>
-              <button class="button gallery__item-like" type="button"></button>
-            </div>
-          </li>
-          <li class="gallery__item">
-            <img src="images/gallery-karachaevsk.jpg" alt="Карачаевск" class="gallery__item-image">
-            <div class="gallery__info">
-              <h2 class="gallery__item-name">Карачаево-Чачаевск</h2>
-              <button class="button gallery__item-like" type="button"></button>
-            </div>
-          </li>
-          <li class="gallery__item">
-            <img src="images/gallery-dombay.jpg" alt="Домбай" class="gallery__item-image">
-            <div class="gallery__info">
-              <h2 class="gallery__item-name">Домбай</h2>
-              <button class="button gallery__item-like" type="button"></button>
-            </div>
-          </li>
-          <li class="gallery__item">
-            <img src="images/gallery-elbrus.jpg" alt="Гора Эльбрус" class="gallery__item-image">
-            <div class="gallery__info">
-              <h2 class="gallery__item-name">Гора Эльбрус</h2>
-              <button class="button gallery__item-like" type="button"></button>
-            </div>
-          </li>
-          <li class="gallery__item">
-            <img src="images/gallery-karachaevsk.jpg" alt="Карачаевск" class="gallery__item-image">
-            <div class="gallery__info">
-              <h2 class="gallery__item-name">Карачаевск</h2>
-              <button class="button gallery__item-like" type="button"></button>
-            </div>
-          </li>
+          <template class="template__gallery-item">
+            <li class="gallery__item">
+              <img src="" alt="" class="gallery__item-image">
+              <button class="button gallery__trash" type="button"></button>
+              <div class="gallery__info">
+                <h2 class="gallery__item-name"></h2>
+                <button class="button gallery__item-like" type="button"></button>
+              </div>
+            </li>
+          </template>
         </ul>
       </section>
     </main>
@@ -73,16 +41,34 @@
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
   </div>
-  <div class="popup">
+  <div class="popup popup__edit-profile">
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form action="#" class="popup__form" name="profile">
+      <form action="#" class="popup__form popup__form_profile" name="profile">
         <input class="popup__input popup__input_tag_name" type="text" autofocus value="" name="account-name" required placeholder="Ваше имя">
         <input class="popup__input popup__input_tag_prof" type="text" value="" name="account-prof" required placeholder="Ваш род деятельности">
         <button class="popup__save button" type="submit">Сохранить</button>
       </form>
       <button class="popup__close-button button" type="button"></button>
     </div>
+  </div>
+  <div class="popup popup__new-place">
+    <div class="popup__container">
+      <h3 class="popup__title">Новое место</h3>
+      <form action="#" class="popup__form popup__form_cards" name="profile">
+        <input class="popup__input popup__input_image_name" type="text" autofocus value="" name="account-name" required placeholder="Название">
+        <input class="popup__input popup__input_image_link" type="text" value="" name="account-prof" required placeholder="Ссылка на картинку">
+        <button class="popup__save button" type="submit">Создать</button>
+      </form>
+      <button class="popup__close-button button" type="button"></button>
+    </div>
+  </div>
+  <div class="popup popup__gallery-image">
+    <figure class="popup__image-container">
+      <img src="" alt="" class="popup__image-full">
+      <figcaption class="popup__image-caption">Карачаево-Черкессия</figcaption>
+      <button class="popup__close-button button" type="button"></button>
+    </figure>
   </div>
   <script src="javascript/index.js"></script>
 </body>

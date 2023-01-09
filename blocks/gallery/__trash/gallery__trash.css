@@ -1,0 +1,8 @@
+.gallery__trash {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: no-repeat url(../../../images/trash.svg);
+  width: 18px;
+  height: 19px;
+}

@@ -1,0 +1,35 @@
+
+
+/*
+.popup__gallery-image {
+  display: flex;
+  justify-content: center;
+}
+*/
+
+.popup__image-container {
+  position: relative;
+  margin: 0;
+}
+
+.popup__image-full {
+  display: block;
+  max-width: 75vw;
+  max-height: 75vh;
+  object-fit: contain;
+}
+@media screen and (max-width: 420px){
+  .popup__image-full {
+    min-height: 299px;
+    object-fit: fill;
+  }
+}
+
+.popup__image-caption {
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FFFFFF;
+}
+
