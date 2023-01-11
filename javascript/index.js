@@ -1,5 +1,5 @@
 const editUser = document.querySelector('.account__edit'); //кнопка редакт карандаш
-const popUpProfile = document.querySelector('.popup__edit-profile');//попап
+const popUpProfile = document.querySelector('.popup_edit-profile');//попап
 const closeButton = document.querySelectorAll('.popup__close-button');//кнопка крестик
 const nameAccount = document.querySelector('.account__name');//имя
 const jobAccount = document.querySelector('.account__profession');//деятельнсоть
@@ -11,8 +11,8 @@ const listGallery = document.querySelector('.gallery__items');//список к�
 const nameNewCard = document.querySelector('.popup__input_image_name');//имя в инпуте формы
 const linkNewCard = document.querySelector('.popup__input_image_link');//ссылка в инпуте формы
 const formAddCard = document.querySelector('.popup__form_cards');//форма новая карта
-const popUpGalleryImage = document.querySelector('.popup__gallery-image');//попап фулл имейдж
-const popUpNewPlace = document.querySelector('.popup__new-place');//попап нвое место
+const popUpGalleryImage = document.querySelector('.popup_gallery-image');//попап фулл имейдж
+const popUpNewPlace = document.querySelector('.popup_new-place');//попап нвое место
 const addImageButton = document.querySelector('.account__add-image');//кнопка +
 const initialCards = [ //карточки галереи
   { name: 'Архыз',
