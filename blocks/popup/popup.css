@@ -9,7 +9,7 @@
   left: 0;
   background-color: rgba(0, 0, 0, .5);
   opacity: 0;
-  visibility: hidden;
+  transform: scale(0);
   transition: .43s ease-out;
 }
 
