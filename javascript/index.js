@@ -64,7 +64,7 @@ function showFullImage(item){
 };//открываем картинку в попап. Достаем переменные для попап картинки и записываем в них значения из создаваемой карточки--ссылку картинки и название подпись. Открываем попап картинки.
 
 //*------------------------------ADD NEW CARD----------------------------------
-function addNewCard(link, name, alt) {
+function addNewCard(link, name, alt){
   const galleryCard = templateCard.querySelector('.gallery__item').cloneNode(true);
   galleryCard.querySelector('.gallery__item-image').src = link;
   galleryCard.querySelector('.gallery__item-image').alt = name;
@@ -99,7 +99,7 @@ initialCards.forEach(function(item){
 formAddCard.addEventListener('submit', addNewPlaceCard); //вызов по сабмиту в форме
 
 //*--------------------PROFILE POPUP CHANGE----------------------------
-function handleFormSubmit (evt) {
+function handleFormSubmit (evt){
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   let job = jobInput.value;  // Получите значение полей jobInput и nameInput из свойства value
   let name = nameInput.value;
