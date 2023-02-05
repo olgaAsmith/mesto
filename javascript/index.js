@@ -21,9 +21,11 @@ const openedImageName = document.querySelector('.popup__image-caption');//под
 
 //*---------------------------------OPEN-CLOSE--POPS------------------------
 function openPopUp(item){
+  item.addEventListener('mousedown', closeByOverlay); //^call closeByOverlay -->
   item.classList.add('popup_opened');
 }
 function closePopUp(item){
+
   item.classList.remove('popup_opened');
 }//общая функция с передачей аргумента для всех попапов
 
@@ -113,6 +115,29 @@ buttonClosePopUp.forEach(function(item){
 initialCards.forEach(function(item){
   listGallery.append(addNewCard(item.link, item.name, item.name));
   //перебираем массив карточек, записывае в аргументы данные из массива и добавляем в конец списка
-})
+});
 
-//document.addEventListener('click', function(event){console.log(event.target);});
+//! ----SPR6
+//*------------------------CLOSE POPUP BY ESCAPE-------------------
+const closeByEscape = (evt) => {
+  const openedPopup = document.querySelector('.popup_opened');
+  if ((evt.key === 'Escape')&&(openedPopup)){
+     closePopUp(openedPopup);
+  }
+}
+//*------------------------CALL CLOSE POPUP BY ESCAPE-------------------
+document.addEventListener('keydown', closeByEscape);
+
+//*------------------------CLOSE POPUP BY OVERLAY-------------------
+const closeByOverlay = (evt) => {
+  const openedPopup = document.querySelector('.popup_opened');
+  if (evt.target !== evt.currentTarget){
+    return;
+  }
+  closePopUp(openedPopup);//кликом по области popup равный области popup, закрывает окно(с веба)(текущий таргет, и таргет на элементе с событием)
+};
+
+
+
+
+/* document.addEventListener('click', function(event){console.log(event.target);}); */
