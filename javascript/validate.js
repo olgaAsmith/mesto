@@ -1,11 +1,11 @@
-const enableValidation = ({
+const validation = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
-});
+};
 
 //*GET FORMS
 const validForms = (objValid) => {
@@ -58,10 +58,10 @@ const setEventListener = (validForm, objValid) => {
   inputs.forEach(function(validInput){
     validInput.addEventListener('input', (evt) => {
       validElement(evt, objValid);
-      toggleClassButton(inputs, buttonSubmit, objValid)
+      toggleClassButton(inputs, buttonSubmit, objValid);
     })
   })
 }
 
 //*run valid
-validForms(enableValidation);
+validForms(validation);

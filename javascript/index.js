@@ -16,18 +16,34 @@ const popUpNewPlace = document.querySelector('.popup_new-place');//попап н
 const buttonOpenNewPlace = document.querySelector('.account__add-image');//кнопка +
 const openedImage = document.querySelector('.popup__image-full');//открытая картинка
 const openedImageName = document.querySelector('.popup__image-caption');//подпись открытой картинки
+const escapeButton = 'Escape';
 //^-------------------------------------------------------------------------
 //^-------------------------------------------------------------------------
 
 //*---------------------------------OPEN-CLOSE--POPS------------------------
 function openPopUp(item){
-  item.addEventListener('mousedown', closeByOverlay); //^call closeByOverlay -->
-  item.classList.add('popup_opened');
+  item.classList.add('popup_opened');//*--CALL CLOSE POPUP BY ESCAPE---
+  document.addEventListener('keydown', closeByEscape);
+  blockAddButtun();
+  unblockSaveButton();
 }
-function closePopUp(item){
 
+function closePopUp(item){
   item.classList.remove('popup_opened');
 }//общая функция с передачей аргумента для всех попапов
+
+//*--------------------------DISACTIVATE ADD CARDBUTTON -----------
+function blockAddButtun() {
+  const buttonAddCard = formAddCard.querySelector('.popup__save');
+  buttonAddCard.classList.add('popup__button_disabled');
+  buttonAddCard.setAttribute('disabled', '');
+}
+//*----------------------ACTIVATE PROFILE SAVE BUTTON------------------------
+function unblockSaveButton() {
+  const buttonSaveInfo = formElement.querySelector('.popup__save');
+  buttonSaveInfo.classList.remove('popup__button_disabled');
+  buttonSaveInfo.removeAttribute('disabled', '');
+}
 
 //*---------------------LIKE------------------------
 function likeCard(evt){
@@ -68,6 +84,7 @@ function addNewCard(link, name, alt){
 //*----------------------------ADD NEWCARD IN FORM--------------------------
 function addNewPlaceCard(evt){
   evt.preventDefault();
+
   const nameCard = nameNewCard.value;
   const linkCard = linkNewCard.value;
   listGallery.prepend(addNewCard(linkCard , nameCard, nameCard));
@@ -77,7 +94,7 @@ function addNewPlaceCard(evt){
 };
 
 //*--------------------PROFILE POPUP CHANGE----------------------------
-function handleFormSubmit (evt){
+function handlePopupProfileSubmit (evt){
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   const job = jobInput.value;  // Получите значение полей jobInput и nameInput из свойства value
   const name = nameInput.value;
@@ -91,7 +108,7 @@ function handleFormSubmit (evt){
 formAddCard.addEventListener('submit', addNewPlaceCard); //вызов по сабмиту в форме
 
 //*-----------------------CHANGE PROFILE SUBMIT--------------------------
-formElement.addEventListener('submit', handleFormSubmit);
+formElement.addEventListener('submit', handlePopupProfileSubmit);
 
 //*-----------------------OPEN PROFILE POPUP--------------------------
 buttonEditProfile.addEventListener('click', function() {
@@ -108,7 +125,7 @@ buttonOpenNewPlace.addEventListener('click', function(){
 buttonClosePopUp.forEach(function(item){
   item.addEventListener('click', function(){
     const closestPopUp = item.closest('.popup');
-    closestPopUp.classList.remove('popup_opened');
+    closePopUp(closestPopUp);
   });
 });//Закрытие всех попапов. Для каждого элемента массива закрытая кнопка - добавить слущатель клика и выполнить: присвоение переменной ближайшей к текущему перебираемому элементу(родитель) и затем удаление класса открытого попапа из этой переменной
 //*------------------------ADD CARD BY ARRAY-------------------
@@ -117,27 +134,21 @@ initialCards.forEach(function(item){
   //перебираем массив карточек, записывае в аргументы данные из массива и добавляем в конец списка
 });
 
-//! ----SPR6
 //*------------------------CLOSE POPUP BY ESCAPE-------------------
-const closeByEscape = (evt) => {
+function closeByEscape(evt){
   const openedPopup = document.querySelector('.popup_opened');
-  if ((evt.key === 'Escape')&&(openedPopup)){
+  if ((evt.key === escapeButton)&&(openedPopup)){
      closePopUp(openedPopup);
+     document.removeEventListener('keydown', closeByEscape);
   }
 }
-//*------------------------CALL CLOSE POPUP BY ESCAPE-------------------
-document.addEventListener('keydown', closeByEscape);
 
 //*------------------------CLOSE POPUP BY OVERLAY-------------------
-const closeByOverlay = (evt) => {
+function closeByOverlay(evt){
   const openedPopup = document.querySelector('.popup_opened');
-  if (evt.target !== evt.currentTarget){
-    return;
+  if (evt.target === openedPopup){
+    closePopUp(openedPopup);
   }
-  closePopUp(openedPopup);//кликом по области popup равный области popup, закрывает окно(с веба)(текущий таргет, и таргет на элементе с событием)
 };
-
-
-
-
-/* document.addEventListener('click', function(event){console.log(event.target);}); */
+//^------------------------Call-------------------
+document.addEventListener('mousedown', closeByOverlay);
