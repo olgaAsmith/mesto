@@ -17,6 +17,7 @@ const buttonOpenNewPlace = document.querySelector('.account__add-image');//кн�
 const openedImage = document.querySelector('.popup__image-full');//открытая картинка
 const openedImageName = document.querySelector('.popup__image-caption');//подпись открытой картинки
 const escapeButton = 'Escape';
+const allPopups = document.querySelectorAll('.popup');
 //^-------------------------------------------------------------------------
 //^-------------------------------------------------------------------------
 
@@ -24,16 +25,16 @@ const escapeButton = 'Escape';
 function openPopUp(item){
   item.classList.add('popup_opened');//*--CALL CLOSE POPUP BY ESCAPE---
   document.addEventListener('keydown', closeByEscape);
-  blockAddButtun();
   unblockSaveButton();
 }
 
 function closePopUp(item){
   item.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
 }//общая функция с передачей аргумента для всех попапов
 
 //*--------------------------DISACTIVATE ADD CARDBUTTON -----------
-function blockAddButtun() {
+function blockAddButton() {
   const buttonAddCard = formAddCard.querySelector('.popup__save');
   buttonAddCard.classList.add('popup__button_disabled');
   buttonAddCard.setAttribute('disabled', '');
@@ -84,11 +85,11 @@ function addNewCard(link, name, alt){
 //*----------------------------ADD NEWCARD IN FORM--------------------------
 function addNewPlaceCard(evt){
   evt.preventDefault();
-
   const nameCard = nameNewCard.value;
   const linkCard = linkNewCard.value;
   listGallery.prepend(addNewCard(linkCard , nameCard, nameCard));
   closePopUp(popUpNewPlace);
+  blockAddButton();
   formAddCard.reset();
   //добавление карточки по кнопке создать. Получаем данные для карточки из значений в инпутах. Добавляем краточку в начало списка через функцию addnewcard с полученными аргументами
 };
@@ -139,16 +140,22 @@ function closeByEscape(evt){
   const openedPopup = document.querySelector('.popup_opened');
   if ((evt.key === escapeButton)&&(openedPopup)){
      closePopUp(openedPopup);
-     document.removeEventListener('keydown', closeByEscape);
   }
 }
 
 //*------------------------CLOSE POPUP BY OVERLAY-------------------
-function closeByOverlay(evt){
-  const openedPopup = document.querySelector('.popup_opened');
-  if (evt.target === openedPopup){
-    closePopUp(openedPopup);
-  }
-};
-//^------------------------Call-------------------
-document.addEventListener('mousedown', closeByOverlay);
+function overlayCloseListener(popup){
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target === popup){
+      closePopUp(popup);
+    }
+  });
+}
+
+//*------------------------popups array-------------------
+function popupsArray() {
+  allPopups.forEach((popup) => {
+    overlayCloseListener(popup);
+  })
+}
+listenOverlayCLose();
