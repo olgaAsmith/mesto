@@ -158,4 +158,4 @@ function popupsArray() {
     overlayCloseListener(popup);
   })
 }
-listenOverlayCLose();
+popupsArray();
