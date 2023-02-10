@@ -153,9 +153,9 @@ function overlayCloseListener(popup){
 }
 
 //*------------------------popups array-------------------
-function popupsArray() {
+function closeByOverlayArray() {
   allPopups.forEach((popup) => {
     overlayCloseListener(popup);
   })
 }
-popupsArray();
+closeByOverlayArray();
