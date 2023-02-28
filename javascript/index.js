@@ -6,23 +6,55 @@ const jobAccount = document.querySelector('.account__profession');//деятел
 const formElement = document.querySelector('.popup__form_profile');//форма редакт профиля
 const nameInput = popUpProfile.querySelector('.popup__input_tag_name');//инпут форма редакт профиля - имя
 const jobInput = popUpProfile.querySelector('.popup__input_tag_prof');// инпут форма редакт профиля - деятельность
-const templateCard = document.querySelector('.template__gallery-item').content;// получение содержимого тега темплейт
-const listGallery = document.querySelector('.gallery__items');//список карточек
-const nameNewCard = document.querySelector('.popup__input_image_name');//имя в инпуте формы
-const linkNewCard = document.querySelector('.popup__input_image_link');//ссылка в инпуте формы
 const formAddCard = document.querySelector('.popup__form_cards');//форма новая карта
-const popUpGalleryImage = document.querySelector('.popup_gallery-image');//попап фулл имейдж
+export const popUpGalleryImage = document.querySelector('.popup_gallery-image');//попап фулл имейдж
 const popUpNewPlace = document.querySelector('.popup_new-place');//попап нвое место
 const buttonOpenNewPlace = document.querySelector('.account__add-image');//кнопка +
-const openedImage = document.querySelector('.popup__image-full');//открытая картинка
-const openedImageName = document.querySelector('.popup__image-caption');//подпись открытой картинки
+export const openedImage = document.querySelector('.popup__image-full');//открытая картинка
+export const openedImageName = document.querySelector('.popup__image-caption');//подпись открытой картинки
 const escapeButton = 'Escape';
 const allPopups = document.querySelectorAll('.popup');
-//^-------------------------------------------------------------------------
-//^-------------------------------------------------------------------------
+const listGallery = document.querySelector('.gallery__items');
+const validation = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
+//^IMPORT--------------------------------------------------------
+import {initialCards} from './initialCards.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
+//*create card by arr
+initialCards.forEach(function(item){
+  const card = new Card(item, '.gallery__item');
+  const cardElement = card.addNewCard();
+  listGallery.append(cardElement);
+});
+
+ //*create card by value in form
+function addNewPlaceCard(evt){
+  evt.preventDefault();
+  const cardFromValue ={
+    name: document.querySelector('.popup__input_image_name').value,
+    link: document.querySelector('.popup__input_image_link').value };
+  const cardFromForm = new Card(cardFromValue, '.gallery__item');
+  const cardElement = cardFromForm.addNewCard();
+  listGallery.prepend(cardElement);
+  closePopUp(popUpNewPlace);
+  blockAddButton();
+  formAddCard.reset();
+}
+
+//*submit card form/addcard listener
+formAddCard.addEventListener('submit', addNewPlaceCard);
 
 //*---------------------------------OPEN-CLOSE--POPS------------------------
-function openPopUp(item){
+export default function openPopUp(item){
   item.classList.add('popup_opened');//*--CALL CLOSE POPUP BY ESCAPE---
   document.addEventListener('keydown', closeByEscape);
   unblockSaveButton();
@@ -46,54 +78,6 @@ function unblockSaveButton() {
   buttonSaveInfo.removeAttribute('disabled', '');
 }
 
-//*---------------------LIKE------------------------
-function likeCard(evt){
-  evt.target.classList.toggle('gallery__item-like_active');
-}//Листенер нулл, массива не существует - нет значения листенеру!!
-
-//*---------------DELETE CARD----------------------
-function deleteCard(evt){
-  const closestCard = evt.target.closest('.gallery__item');
-  closestCard.remove();
-}
-
-//*------------------FULLIMAGE POPUP--------------------------
-function showFullImage(item){
-  openedImage.src = item.target.src;
-  openedImageName.textContent = item.target.alt;
-  openedImage.alt = item.target.alt;
-  openPopUp(popUpGalleryImage);
-};//открываем картинку в попап. Достаем переменные для попап картинки и записываем в них значения из создаваемой карточки--ссылку картинки и название подпись. Открываем попап картинки.
-
-//*------------------------------ADD NEW CARD----------------------------------
-function addNewCard(link, name, alt){
-  const galleryCard = templateCard.querySelector('.gallery__item').cloneNode(true);
-  const galleryImageData = galleryCard.querySelector('.gallery__item-image')
-  galleryImageData.src = link;//<---^
-  galleryImageData.alt = name;//<---^
-  galleryCard.querySelector('.gallery__item-name').textContent = alt;
-  const buttonLike = galleryCard.querySelector('.gallery__item-like');
-  const buttonDeleteCard = galleryCard.querySelector('.gallery__trash');
-  const buttonShowFullImage = galleryImageData;//<---^
-  buttonLike.addEventListener('click', likeCard);
-  buttonDeleteCard.addEventListener('click', deleteCard);
-  buttonShowFullImage.addEventListener('click', showFullImage);
-  return galleryCard;
-  //получаем клон кода из темплейт, задаем атрибуты склонированного объекта. Получаем значения из полученных аргументов функции. Получаем из клона лайк, корзинку и кнопку(сама картинка карточки) и вызываем функции для этих переменных. Записываем полученную карточку.
-}
-
-//*----------------------------ADD NEWCARD IN FORM--------------------------
-function addNewPlaceCard(evt){
-  evt.preventDefault();
-  const nameCard = nameNewCard.value;
-  const linkCard = linkNewCard.value;
-  listGallery.prepend(addNewCard(linkCard , nameCard, nameCard));
-  closePopUp(popUpNewPlace);
-  blockAddButton();
-  formAddCard.reset();
-  //добавление карточки по кнопке создать. Получаем данные для карточки из значений в инпутах. Добавляем краточку в начало списка через функцию addnewcard с полученными аргументами
-};
-
 //*--------------------PROFILE POPUP CHANGE----------------------------
 function handlePopupProfileSubmit (evt){
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
@@ -104,10 +88,6 @@ function handlePopupProfileSubmit (evt){
   jobAccount.textContent = job;// Вставьте новые значения с помощью textContent
   closePopUp(popUpProfile);
 }
-
-//*-----------------ADD NEWCARD SUBMIT--------------------
-formAddCard.addEventListener('submit', addNewPlaceCard); //вызов по сабмиту в форме
-
 //*-----------------------CHANGE PROFILE SUBMIT--------------------------
 formElement.addEventListener('submit', handlePopupProfileSubmit);
 
@@ -128,11 +108,6 @@ buttonClosePopUp.forEach(function(item){
     const closestPopUp = item.closest('.popup');
     closePopUp(closestPopUp);
   });
-});//Закрытие всех попапов. Для каждого элемента массива закрытая кнопка - добавить слущатель клика и выполнить: присвоение переменной ближайшей к текущему перебираемому элементу(родитель) и затем удаление класса открытого попапа из этой переменной
-//*------------------------ADD CARD BY ARRAY-------------------
-initialCards.forEach(function(item){
-  listGallery.append(addNewCard(item.link, item.name, item.name));
-  //перебираем массив карточек, записывае в аргументы данные из массива и добавляем в конец списка
 });
 
 //*------------------------CLOSE POPUP BY ESCAPE-------------------
@@ -159,3 +134,21 @@ function closeByOverlayArray() {
   })
 }
 closeByOverlayArray();
+
+//^new---------arr forms valid----------- //.popup__form
+function startValid() {
+  const forms = Array.from(document.querySelectorAll(validation.formSelector));
+    forms.forEach((form) => {
+      const validForm = new FormValidator(validation, form);
+      validForm.enableValidation();
+    });
+}
+startValid();
+/*  const formNewName = new FormValidator(validation, formElement);
+ const formNewCard = new FormValidator(validation, formAddCard);
+ formNewName.enableValidation();
+ formNewCard.enableValidation();
+ */
+
+
+
