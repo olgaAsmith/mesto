@@ -7,8 +7,13 @@ export default class Card {
     this._handleCardClick = handleCardClick;
   }
 
+  _getTemplateCard() { //*clone template
+    this._card = document.querySelector(this._templateSelector).content.querySelector('.gallery__item').cloneNode(true);
+    return this._card;
+  }
+
   addNewCard(){ //* create card + listeners like delete fulls
-    this._addedCard = this._templateSelector;
+    this._addedCard = this._getTemplateCard();
     this._image = this._addedCard.querySelector('.gallery__item-image');
     this._nameCard = this._addedCard.querySelector('.gallery__item-name');
     this._image.src = this._link;

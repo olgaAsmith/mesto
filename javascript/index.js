@@ -1,6 +1,6 @@
 const buttonEditProfile = document.querySelector('.account__edit'); //кнопка редакт карандаш
 const popUpProfile = document.querySelector('.popup_edit-profile');//попап
-const buttonClosePopUp = document.querySelectorAll('.popup__close-button');//кнопка крестик
+const buttonsClosePopUp = document.querySelectorAll('.popup__close-button');//кнопка крестик
 const nameAccount = document.querySelector('.account__name');//имя
 const jobAccount = document.querySelector('.account__profession');//деятельнсоть
 const formElement = document.querySelector('.popup__form_profile');//форма редакт профиля
@@ -34,8 +34,7 @@ import FormValidator from './FormValidator.js';
 
 //*create card
 function createCard(item) {
-  const cardTemplate = document.querySelector('.template__gallery-item').content.querySelector('.gallery__item').cloneNode(true);
-  const card = new Card(item, cardTemplate, handleCardClick);
+  const card = new Card(item, '.template__gallery-item', handleCardClick);
   const cardElement = card.addNewCard();
   return cardElement;
 }
@@ -99,7 +98,7 @@ buttonOpenNewPlace.addEventListener('click', function(){
   openPopUp(popUpNewPlace)});//клик по + откроет попап добавления карточки
 
 //* ----------------CLOSE BUTTON---------------
-buttonClosePopUp.forEach(function(item){
+buttonsClosePopUp.forEach(function(item){
   item.addEventListener('click', function(){
     const closestPopUp = item.closest('.popup');
     closePopUp(closestPopUp);
