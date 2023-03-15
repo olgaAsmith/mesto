@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="pages/index.css">
   <title>Mesto</title>
 </head>
 <body class="body">
@@ -14,7 +13,7 @@
     </header>
     <main class="content">
       <section class="account">
-          <img src="images/avatar.jpg" alt="Аватар" class="account__image">
+          <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="account__image">
           <div class="account__owner">
             <h1 class="account__name">Жак-Ив Кусто</h1>
             <button class="button account__edit" type="button"></button>
@@ -58,9 +57,9 @@
     <div class="popup__container">
       <h3 class="popup__title">Новое место</h3>
       <form action="#" class="popup__form popup__form_cards" name="addCard" novalidate>
-        <input id ="popup-input-image-name" class="popup__input popup__input_image_name" type="text" value="" name="place-name" required placeholder="Название" minlength="2" maxlength="30">
+        <input id ="popup-input-image-name" class="popup__input popup__input_image_name" type="text" value="" name="placeName" required placeholder="Название" minlength="2" maxlength="30">
         <span id ="popup-input-image-name-error" class="popup__error"></span>
-        <input id ="popup-input-image-link" class="popup__input popup__input_image_link" type="url" value="" name="place-link" required placeholder="Ссылка на картинку">
+        <input id ="popup-input-image-link" class="popup__input popup__input_image_link" type="url" value="" name="placeLink" required placeholder="Ссылка на картинку">
         <span id ="popup-input-image-link-error" class="popup__error"></span>
         <button class="popup__save button popup__button" type="submit">Создать</button>
       </form>
@@ -74,8 +73,5 @@
       <button class="popup__close-button button" type="button"></button>
     </div>
   </div>
-  <script type="module" src="javascript/index.js"></script>
-
-
 </body>
 </html>

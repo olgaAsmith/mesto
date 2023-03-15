@@ -36,7 +36,6 @@ export default class Card {
     this._buttonLike.addEventListener('click', (evt) => {
       this._likeCard(evt);
     });
-
     this._buttonDeleteCard = this._addedCard.querySelector('.gallery__trash');
     this._buttonDeleteCard.addEventListener('click', () => {
       this._deleteCard();
