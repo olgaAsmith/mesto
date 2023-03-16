@@ -1,30 +1,34 @@
 import '../../pages/index.css';
 import {buttonEditProfile,
   popUpProfile,
-  formElement,
   nameInput,
   jobInput,
   popUpGalleryImage,
   popUpNewPlace,
   buttonOpenNewPlace,
-  openedImage,
-  openedImageName,
   listGallery,
   validation,
-  formValidators} from '../utils/constant.js';
+  formValidators,
+  nameOnPage,
+  jobOnPage} from '../utils/constant.js';
 import {initialCards} from '../utils/initialCards.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
-import Popup from '../components/Popup.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 
 const popupWithImage = new PopupWithImage(popUpGalleryImage);
+popupWithImage.setEventListeners();
 const popupWithForm = new PopupWithForm(popUpNewPlace, addNewPlaceCard);
-const popupUserInfo = new Popup(popUpProfile);
-const userInfo = new UserInfo(nameInput, jobInput);
+popupWithForm.setEventListeners();
+const popupUserInfo = new PopupWithForm(popUpProfile, handlePopupProfileSubmit);
+popupUserInfo.setEventListeners();
+const userInfo = new UserInfo({
+  name: '.account__name',
+  job: '.account__profession'
+});
 
 //*create card
 function createCard(item) {
@@ -50,35 +54,39 @@ const cardFromForm = {
   link: cardFromValue.placeLink
   }
   createCard(cardFromForm);
-  popupWithForm.closePopup();
+  popupWithForm.close();
   formValidators['addCard'].resetValidation();
 }
 
 //*-----------------------OPEN PROFILE POPUP--------------------------
 buttonEditProfile.addEventListener('click', function() {
   userInfo.getUserInfo();
-  popupUserInfo.openPopup();
+  getValueToForm();
+  popupUserInfo.open();
   formValidators['profile'].resetValidation();
 }); // кнопка едит открывает попап
 
-//*--------------------PROFILE POPUP CHANGE----------------------------
-function handlePopupProfileSubmit (evt){
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  userInfo.setUserInfo();
-  popupUserInfo.closePopup();
+//*get input value from textcontent h1+p
+function getValueToForm(){
+  nameInput.value = nameOnPage.textContent;
+  jobInput.value = jobOnPage.textContent;
 }
 
-//*-----------------------CHANGE PROFILE SUBMIT--------------------------
-formElement.addEventListener('submit', handlePopupProfileSubmit);
+//*--------------------PROFILE POPUP CHANGE----------------------------
+function handlePopupProfileSubmit(data){
+  const {accountName, accountProf} = data;
+  userInfo.setUserInfo(accountName, accountProf);
+  popupUserInfo.close();
+}
 
 //*bring data from created cards and give it to PopupWithImage------
 function handleCardClick(name, link) {
-  popupWithImage.openPopup(name, link, openedImageName, openedImage);
+  popupWithImage.open(name, link);
 }
 
 //*---------------ADD IMAGE BBUTTON(+) OPENS POPUPNEWPLACE----------------
 buttonOpenNewPlace.addEventListener('click', function(){
-  popupWithForm.openPopup()});//клик по + откроет попап добавления карточки
+  popupWithForm.open()});//клик по + откроет попап добавления карточки
 
 //* valid enable
 const turnOnValidation = (config) => {

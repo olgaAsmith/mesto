@@ -4,12 +4,12 @@ export default class PopupWithForm extends Popup{
   constructor(popup, addCard){
     super(popup);
     this._addCard = addCard;
-    this._form = document.querySelector('.popup__form_cards');
+    this._form = popup.querySelector('.popup__form');
+    this._inputs = this._form.querySelectorAll('.popup__input');
   }
 
   _getInputValues(){
     this._formInputValues = {};
-    this._inputs = this._form.querySelectorAll('.popup__input');
     this._inputs.forEach(input => this._formInputValues[input.name] = input.value);
     return this._formInputValues;
   }
@@ -22,8 +22,8 @@ export default class PopupWithForm extends Popup{
     });
   }
 
-  closePopup(){
-    super.closePopup();
+  close(){
+    super.close();
     this._form.reset();
   }
 }
