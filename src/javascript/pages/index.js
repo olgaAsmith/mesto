@@ -8,9 +8,7 @@ import {buttonEditProfile,
   buttonOpenNewPlace,
   listGallery,
   validation,
-  formValidators,
-  nameOnPage,
-  jobOnPage} from '../utils/constant.js';
+  formValidators} from '../utils/constant.js';
 import {initialCards} from '../utils/initialCards.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -36,6 +34,7 @@ function createCard(item) {
   const cardElement = card.addNewCard();
   section.addItemBefore(cardElement);
 }
+
 //*render cards
 const section = new Section({
     items: initialCards,
@@ -43,15 +42,14 @@ const section = new Section({
         const cardElement = createCard(item);
         section.addItem(cardElement);
       }
-    },
-  listGallery);
-section.renderItems();
+    }, listGallery);
+  section.renderItems();
 
 //*add new card from form
 function addNewPlaceCard(cardFromValue){
 const cardFromForm = {
-  name: cardFromValue.placeName,
-  link: cardFromValue.placeLink
+    name: cardFromValue.placeName,
+    link: cardFromValue.placeLink
   }
   createCard(cardFromForm);
   popupWithForm.close();
@@ -60,16 +58,16 @@ const cardFromForm = {
 
 //*-----------------------OPEN PROFILE POPUP--------------------------
 buttonEditProfile.addEventListener('click', function() {
-  userInfo.getUserInfo();
-  getValueToForm();
+  const userInfoData = userInfo.getUserInfo();
+  getValueToForm(userInfoData);
   popupUserInfo.open();
   formValidators['profile'].resetValidation();
 }); // кнопка едит открывает попап
 
 //*get input value from textcontent h1+p
-function getValueToForm(){
-  nameInput.value = nameOnPage.textContent;
-  jobInput.value = jobOnPage.textContent;
+function getValueToForm({name, job}){
+  nameInput.value = name;
+  jobInput.value = job;
 }
 
 //*--------------------PROFILE POPUP CHANGE----------------------------

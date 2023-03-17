@@ -15,5 +15,3 @@ export const validation = {
   errorClass: 'popup__error_visible'
 };
 export const formValidators = {};
-export const nameOnPage = document.querySelector('.account__name');
-export const jobOnPage = document.querySelector('.account__profession');
