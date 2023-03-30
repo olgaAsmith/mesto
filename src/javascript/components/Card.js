@@ -26,24 +26,25 @@ export default class Card {
     this._nameCard.textContent = this._alt;
     this._setEventsListeners();
     this.showLikes(this._likesArray.length);
+    this._checkLike();
     return this._сard;
   }
 
-
   _checkLike(){
     return this._likesArray.some(liked => {
-      liked._id === this._userMe._id})
+      return liked._id === this._userMe._id})
    }
-   
+
     showLikes(number){ //*show count likes
       if (this._checkLike()){this.likeCard()};
       this._likes = this._сard.querySelector('.gallery__like-count');
-      if((this._likesArray.length === 0)||(this._likesArray.length === 'undefined')){
+      if(this._likesArray.length === 0){
         this._likes.textContent = '';
       } else {
         this._likes.textContent = number;
     }
   }
+
   likeCard(){
     this._buttonLike.classList.add('gallery__item-like_active');
   }

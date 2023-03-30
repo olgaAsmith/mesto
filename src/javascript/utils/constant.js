@@ -15,3 +15,4 @@ export const validation = {
   errorClass: 'popup__error_visible'
 };
 export const formValidators = {};
+export const avatar = document.querySelector('.account__image');
