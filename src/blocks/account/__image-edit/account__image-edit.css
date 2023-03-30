@@ -1,0 +1,5 @@
+.account__image-edit {
+  position: absolute;
+  z-index: -1;
+  margin-left: 47px;
+}

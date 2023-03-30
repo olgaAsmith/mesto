@@ -14,10 +14,11 @@
     <main class="content">
       <section class="account">
           <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="account__image">
+          <img src="<%=require('./images/pencil.png')%>" alt="Аватар" class="account__image-edit">
           <div class="account__owner">
-            <h1 class="account__name">Жак-Ив Кусто</h1>
+            <h1 class="account__name"></h1>
             <button class="button account__edit" type="button"></button>
-            <p class="account__profession">Исследователь океана</p>
+            <p class="account__profession"></p>
           </div>
           <button class="button account__add-image" type="button"></button>
       </section>
@@ -29,7 +30,10 @@
               <button class="button gallery__trash" type="button"></button>
               <div class="gallery__info">
                 <h2 class="gallery__item-name"></h2>
-                <button class="button gallery__item-like" type="button"></button>
+                <div class="gallery__like-block">
+                  <button class="button gallery__item-like" type="button"></button>
+                  <p class="gallery__like-count"></p>
+                </div>
               </div>
             </li>
           </template>
@@ -70,6 +74,24 @@
     <div class="popup__image-container">
       <img src="#" alt="" class="popup__image-full">
       <p class="popup__image-caption"></p>
+      <button class="popup__close-button button" type="button"></button>
+    </div>
+  </div>
+  <div class="popup popup_delete-card-question">
+    <div class="popup__container popup__container_delete-card">
+      <h3 class="popup__title popup__title_delete-card-question">Вы уверены?</h3>
+      <button class="popup__button-say-yes button popup__button" type="submit">Да</button>
+      <button class="popup__close-button button" type="button"></button>
+    </div>
+  </div>
+  <div class="popup popup_set-new-avatar">
+    <div class="popup__container popup__container_set-new-avatar">
+      <h3 class="popup__title popup__title_new-avatar">Обновить аватар</h3>
+      <form action="#" class="popup__form popup__form_avatar" name="addAvatar" novalidate>
+        <input id ="popup-input-avatar-link" class="popup__input popup__input_avatar_link" type="url" value="" name="avatarLink" required placeholder="Ссылка на новый аватар">
+        <span id ="popup-input-avatar-link-error" class="popup__error"></span>
+        <button class="popup__save button popup__button popup__button-new-avatar" type="submit">Сохранить</button>
+      </form>
       <button class="popup__close-button button" type="button"></button>
     </div>
   </div>

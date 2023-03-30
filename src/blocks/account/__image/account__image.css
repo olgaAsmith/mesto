@@ -1,6 +1,13 @@
 .account__image { /*аватарка*/
+  position: relative;
   width: 120px;
   height: 120px;
   object-fit: cover;
   border-radius: 50%;
+  cursor: pointer;
+  transition: opacity .3s;
+}
+
+.account__image:hover{
+    opacity: 0.2;
 }

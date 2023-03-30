@@ -56,5 +56,4 @@ export default class FormValidator {
   resetValidation() {
     this._toggleClassButton();
   }
-
 }

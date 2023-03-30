@@ -1,8 +1,7 @@
 .gallery__item-like {
-  justify-self: end;
   width: 22px;
   height: 19px;
-  background-image: url(../../../images/like.svg);
+  background-image: url(../../../../images/like.svg);
   background-color: transparent;
 }
 
