@@ -8,6 +8,7 @@
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/account/account.css);
+@import url(../blocks/account/__avatar-place/account__avatar-place.css);
 @import url(../blocks/account/__image/account__image.css);
 @import url(../blocks/account/__image-edit/account__image-edit.css);
 @import url(../blocks/account/__owner/account__owner.css);

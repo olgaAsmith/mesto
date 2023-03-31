@@ -1,5 +1,6 @@
 .account__image-edit {
   position: absolute;
   z-index: -1;
-  margin-left: 47px;
+  top: calc(50%-13px);
+  left: calc(50% - 13px);
 }

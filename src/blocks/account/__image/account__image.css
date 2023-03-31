@@ -1,5 +1,4 @@
 .account__image { /*аватарка*/
-  position: relative;
   width: 120px;
   height: 120px;
   object-fit: cover;

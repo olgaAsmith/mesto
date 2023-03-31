@@ -73,7 +73,6 @@ turnOnValidation(validation);
 
 //^ add user data on page after get  //^ render cards from serv
 Promise.all([api.getCardsData(), api.getUserData()]).then(([dataCards, dataUser])=> {
-  console.log(dataCards);
   userInfo.setUserInfo(dataUser.name, dataUser.about, dataUser.avatar);
   section.renderItems(dataCards, dataUser);
 });
@@ -98,6 +97,7 @@ function addNewPlaceCard(cardFromValue){
       name: result.name,
       link: result.link,
       owner: result.owner,
+      likes: []
     }
     section.addItemBefore(createCard(cardFromForm, result.owner));
   })
@@ -112,7 +112,7 @@ function addNewPlaceCard(cardFromValue){
 //*edit profile button
 function handlePopupProfileSubmit(data){
   const {accountName, accountProf} = data;
-  userInfo.setUserInfo(accountName, accountProf);
+  userInfo.setUserInfo(accountName, accountProf, avatar.src);
   api.editUserInfo(accountName, accountProf)
   .then(()=>{
     popupUserInfo.buttonLoading(true);
@@ -128,14 +128,13 @@ avatar.addEventListener('click', function(){
   popupEditAvatar.open();
 })
 
-
 //*click trash opens popup, send submit to popup
 function clickOnTrashIcon(cardId, card){
   popupDeleteCard.open();
   popupDeleteCard.deleteCardFunction(()=>{
     api.removeCard(cardId).then(()=>{
-    card.deleteCard();
-    popupDeleteCard.close();
+      card.deleteCard();
+      popupDeleteCard.close();
     }).catch((error)=>{console.log(error);})
   })
 }
@@ -143,18 +142,18 @@ function clickOnTrashIcon(cardId, card){
 //*click on hearts
 function clickOnLike(cardId, card, checked){
   if(checked) { //*id user === user id like
-    card.unlikeCard();
     api.dislikeCard(cardId)
     .then((result)=>{
+      card.toggleLike();
+      console.log(result.likes.length);
       card.showLikes(result.likes.length);
-      console.log('11');
-    }).catch((error)=>{console.log(error);})
+     }).catch((error)=>{console.log(error);})
   } else {
-    card.likeCard();
-    api.likeCard(cardId).then((result)=>{
+    api.likeCard(cardId)
+    .then((result)=>{
+      card.toggleLike();
       card.showLikes(result.likes.length);
-    })
-    .catch((error)=>{console.log(error);})
+    }).catch((error)=>{console.log(error);})
   }
 }
 
