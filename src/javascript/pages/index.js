@@ -81,8 +81,7 @@ Promise.all([api.getCardsData(), api.getUserData()]).then(([dataCards, dataUser]
 const section = new Section({
   renderer: (item, userMe) => {
     section.addItem(createCard(item, userMe));
-  }
-}, listGallery);
+  }}, listGallery);
 //*create card
 function createCard(item, userMe){
   const card = new Card(item, '.template__gallery-item', handleCardClick, userMe, clickOnTrashIcon, clickOnLike);
@@ -90,28 +89,24 @@ function createCard(item, userMe){
 }
 //*add new card from form
 function addNewPlaceCard(cardFromValue){
+  popupWithForm.buttonLoading(true);
   api.createCard(cardFromValue.placeName, cardFromValue.placeLink,)
   .then((result)=>{
-
-
-
-    popupWithForm.buttonLoading(true);
     const cardFromForm = {
       name: result.name,
       link: result.link,
       owner: result.owner,
-      likes: []
+      likes: [],
+      _id: result._id
     }
-
       section.addItemBefore(createCard(cardFromForm, result.owner));
-      /* api.getCardsData(); */
-
-  })
-  .catch((error)=>{console.log(error);})
-  .finally(() => {
-    popupWithForm.buttonLoading(false);
-  });
-  popupWithForm.close();
+    })
+    .catch((error)=>{console.log(error);})
+    .finally(() => {
+      popupWithForm.buttonLoading(false);
+    });
+    api.getUserData().then((result)=>console.log(result))
+    popupWithForm.close();
   formValidators['addCard'].resetValidation();
 }
 
@@ -119,9 +114,9 @@ function addNewPlaceCard(cardFromValue){
 function handlePopupProfileSubmit(data){
   const {accountName, accountProf} = data;
   userInfo.setUserInfo(accountName, accountProf, avatar.src);
+  popupUserInfo.buttonLoading(true);
   api.editUserInfo(accountName, accountProf)
   .then(()=>{
-    popupUserInfo.buttonLoading(true);
     popupUserInfo.close();
   }).catch((error)=>{console.log(error);})
   .finally(() => {
@@ -146,18 +141,17 @@ function clickOnTrashIcon(cardId, card){
 }
 
 //*click on hearts
-function clickOnLike(cardId, card, checked){
-  if(checked) { //*id user === user id like
+function clickOnLike(cardId, card, liked){
+  if(liked) { //*get true/false from like/unlike
     api.dislikeCard(cardId)
     .then((result)=>{
-      card.toggleLike();
-      console.log(result.likes.length);
+      card.unlike();
       card.showLikes(result.likes.length);
-     }).catch((error)=>{console.log(error);})
+    }).catch((error)=>{console.log(error);})
   } else {
     api.likeCard(cardId)
     .then((result)=>{
-      card.toggleLike();
+      card.like();
       card.showLikes(result.likes.length);
     }).catch((error)=>{console.log(error);})
   }
@@ -165,9 +159,9 @@ function clickOnLike(cardId, card, checked){
 
 //*set new avatar
 function setNewAvatar(link){
+  popupEditAvatar.buttonLoading(true);
   api.setAvatar(link.avatarLink)
   .then(()=>{
-    popupEditAvatar.buttonLoading(true);
     userInfo.setNewAvatar(link.avatarLink);
     popupEditAvatar.close();
   })

@@ -26,13 +26,14 @@ export default class Card {
     this._nameCard.textContent = this._alt;
     this._setEventsListeners();
     this.showLikes(this._likesArray.length);
-    if (this._checkLike()){this.toggleLike()};
+    if (this._checkLike()){this.like()};
     return this._сard;
   }
 
-  _checkLike(){
-    return this._likesArray.find((like) => like._id === this._userMe._id);
-  }
+  _checkLike(){//*just id check
+    return this._likesArray.some(like => {
+      return like._id === this._userMe._id});
+    }
 
   showLikes(number){ //*show count likes
     this._likes = this._сard.querySelector('.gallery__like-count');
@@ -43,8 +44,13 @@ export default class Card {
     }
   }
 
-  toggleLike(){
-    this._buttonLike.classList.toggle('gallery__item-like_active');
+  like(){
+    this._buttonLike.classList.add('gallery__item-like_active');
+    this.liked = true;//*change to unlike
+  }
+  unlike(){
+    this._buttonLike.classList.remove('gallery__item-like_active');
+    this.liked = false;//*change to like
   }
   deleteCard(){
     this._сard.remove();
@@ -54,8 +60,7 @@ export default class Card {
     //& like
     this._buttonLike = this._сard.querySelector('.gallery__item-like');
     this._buttonLike.addEventListener('click', () => {
-      this._clickOnLike(this._item._id, this, this._checkLike());
-      this.showLikes();
+      this._clickOnLike(this._item._id, this, this.liked);
     });
     //& find button
     this._buttonDeleteCard = this._сard.querySelector('.gallery__trash');
