@@ -8,8 +8,9 @@
 .header{border-bottom:1px solid rgba(84,84,84,.7);width:100%}
 .header__logo{background:no-repeat url(images/logo-white.d43446e36b2d5532b17c.svg);background-size:cover;display:block;height:33px;margin:45px 0 41px;-o-object-fit:cover;object-fit:cover;width:142px}@media screen and (max-width:920px){.header__logo{margin:28px 0 31.6px 27px}}@media screen and (max-width:480px){.header__logo{height:24.39px;width:103.73px}}
 .account{align-items:center;color:#fff;display:grid;gap:30px;grid-template-columns:120px 1fr 150px;padding-top:40px}@media screen and (max-width:760px){.account{align-items:center;display:flex;flex-direction:column;justify-content:center;padding-top:42px;text-align:center}}@media screen and (max-width:480px){.account{gap:0}}
-.account__image{border-radius:50%;cursor:pointer;height:120px;-o-object-fit:cover;object-fit:cover;position:relative;transition:opacity .3s;width:120px}.account__image:hover{opacity:.2}
-.account__image-edit{margin-left:47px;position:absolute;z-index:-1}
+.account__avatar-place{position:relative}
+.account__image{border-radius:50%;cursor:pointer;height:120px;-o-object-fit:cover;object-fit:cover;transition:opacity .3s;width:120px}.account__image:hover{opacity:.2}
+.account__image-edit{left:calc(50% - 13px);position:absolute;top:calc(50% - 13px);z-index:-1}
 .account__owner{align-items:baseline;display:grid;grid-template-columns:minmax(min-content,max-content) 1fr}@media screen and (max-width:480px){.account__owner{margin-top:26px}}@-moz-document url-prefix(){.account__owner{align-items:center}}
 .account__name{display:inline-block;font-size:42px;font-weight:500;line-height:48px;margin:0;max-width:450px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:960px){.account__name{max-width:300px}}@media screen and (max-width:480px){.account__name{font-size:27px;line-height:33px;margin-left:26px;max-width:200px}}
 .account__edit{background:no-repeat url(images/editor.a785db3a8a82e6887550.svg);background-position:50%;border:1px solid #fff;display:inline-block;height:24px;margin-left:18px;width:24px}@-moz-document url-prefix(){.account__edit{margin-top:10px}}@media screen and (max-width:480px){.account__edit{height:18px;margin-left:10px;width:18px}@-moz-document url-prefix(){.account__edit{margin-top:6px}}}
@@ -32,8 +33,8 @@
 .popup{align-items:center;background-color:rgba(0,0,0,.5);display:flex;height:100%;justify-content:center;left:0;opacity:0;position:fixed;top:0;transform:scale(0);transition:.43s ease-out;width:100%}
 .popup_opened{opacity:1;transform:scale(1)}
 .popup__container{align-items:center;background-color:#fff;border-radius:10px;display:flex;flex-direction:column;justify-content:center;margin:0 auto;max-width:430px;min-height:330px;position:relative}@media screen and (max-width:620px){.popup__container{width:calc(100% - 38px)}}
-.popup__container_delete-card{min-height:181px;width:430px}
-.popup__container_set-new-avatar{min-height:272px;width:430px}
+.popup__container_delete-card{min-height:181px;width:430px}@media screen and (max-width:620px){.popup__container{width:calc(100% - 38px)}}
+.popup__container_set-new-avatar{min-height:272px;width:430px}@media screen and (max-width:620px){.popup__container{width:calc(100% - 38px)}}
 .popup__title{font-size:24px;font-weight:900;line-height:29px;margin:0 0 14px;width:calc(100% - 72px)}@media screen and (max-width:620px){.popup__title{font-size:18px;line-height:22px;margin-bottom:44px}}@media screen and (max-width:480px){.popup__title{width:calc(100% - 44px)}}
 .popup__title_delete-card-question{margin:0}
 .popup__title_new-avatar{margin-top:22px}
