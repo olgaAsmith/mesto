@@ -92,6 +92,9 @@ function createCard(item, userMe){
 function addNewPlaceCard(cardFromValue){
   api.createCard(cardFromValue.placeName, cardFromValue.placeLink,)
   .then((result)=>{
+
+
+
     popupWithForm.buttonLoading(true);
     const cardFromForm = {
       name: result.name,
@@ -99,7 +102,10 @@ function addNewPlaceCard(cardFromValue){
       owner: result.owner,
       likes: []
     }
-    section.addItemBefore(createCard(cardFromForm, result.owner));
+
+      section.addItemBefore(createCard(cardFromForm, result.owner));
+      /* api.getCardsData(); */
+
   })
   .catch((error)=>{console.log(error);})
   .finally(() => {
