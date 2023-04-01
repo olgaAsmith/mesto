@@ -23,13 +23,12 @@ export default class PopupWithForm extends Popup{
     });
   }
 
-  buttonLoading(isLoading){
+  changeButtonText(isLoading){
     if (isLoading) {
       this._buttonSave.textContent = 'Сохранение...'
     } else {
       this._buttonSave.textContent = 'Сохранить'
   }}
-
 
   close(){
     super.close();

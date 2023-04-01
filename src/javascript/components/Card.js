@@ -21,6 +21,7 @@ export default class Card {
     this._сard = this._getTemplateCard();
     this._image = this._сard.querySelector('.gallery__item-image');
     this._nameCard = this._сard.querySelector('.gallery__item-name');
+    this._likes = this._сard.querySelector('.gallery__like-count');
     this._image.src = this._link;
     this._image.alt = this._name;
     this._nameCard.textContent = this._alt;
@@ -36,7 +37,6 @@ export default class Card {
     }
 
   showLikes(number){ //*show count likes
-    this._likes = this._сard.querySelector('.gallery__like-count');
     if(number === 0){
       this._likes.textContent = '';
     } else {

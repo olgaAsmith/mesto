@@ -6,8 +6,6 @@ export default class FormValidator {
 
   enableValidation() {
     this._setEventListener();
-    this._form.addEventListener('input', () => {
-    });
   }
 
   _validElement(evt) {//*red errors

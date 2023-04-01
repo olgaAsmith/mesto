@@ -21,8 +21,8 @@ import Api from '../components/Api.js';
 
 const popupWithImage = new PopupWithImage(popUpGalleryImage);
 popupWithImage.setEventListeners();
-const popupWithForm = new PopupWithForm(popUpNewPlace, addNewPlaceCard);
-popupWithForm.setEventListeners();
+const popupNewCard = new PopupWithForm(popUpNewPlace, addNewPlaceCard);
+popupNewCard.setEventListeners();
 const popupUserInfo = new PopupWithForm(popUpProfile, handlePopupProfileSubmit);
 popupUserInfo.setEventListeners();
 const popupEditAvatar = new PopupWithForm(document.querySelector('.popup_set-new-avatar'), setNewAvatar) ;
@@ -34,7 +34,11 @@ const userInfo = new UserInfo({
   job: '.account__profession',
   avatar: '.account__image'
 });
-const api = new Api;
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-62/',
+  headers: {'Content-Type': 'application/json',
+            authorization: 'b594440b-0ebe-413b-972a-23196d848451'}
+});
 
 //*button "edit profile" opens popup editting infoUser
 buttonEditProfile.addEventListener('click', function() {
@@ -57,7 +61,8 @@ function handleCardClick(name, link) {
 
 //*button "add image" opens popup adding images
 buttonOpenNewPlace.addEventListener('click', function(){
-  popupWithForm.open()});
+  popupNewCard.open()
+  formValidators['addCard'].resetValidation()});
 
 //* valid enabling
 const turnOnValidation = (config) => {
@@ -73,9 +78,9 @@ turnOnValidation(validation);
 
 //^ add user data on page after get  //^ render cards from serv
 Promise.all([api.getCardsData(), api.getUserData()]).then(([dataCards, dataUser])=> {
-  userInfo.setUserInfo(dataUser.name, dataUser.about, dataUser.avatar);
+  userInfo.setUserInfo({name: dataUser.name, job: dataUser.about, avatar: dataUser.avatar});
   section.renderItems(dataCards, dataUser);
-});
+}).catch((error)=>{console.log(error);});
 
 //*render cards
 const section = new Section({
@@ -89,7 +94,7 @@ function createCard(item, userMe){
 }
 //*add new card from form
 function addNewPlaceCard(cardFromValue){
-  popupWithForm.buttonLoading(true);
+  popupNewCard.changeButtonText(true);
   api.createCard(cardFromValue.placeName, cardFromValue.placeLink,)
   .then((result)=>{
     const cardFromForm = {
@@ -100,33 +105,33 @@ function addNewPlaceCard(cardFromValue){
       _id: result._id
     }
       section.addItemBefore(createCard(cardFromForm, result.owner));
+      popupNewCard.close();
     })
     .catch((error)=>{console.log(error);})
     .finally(() => {
-      popupWithForm.buttonLoading(false);
+      popupNewCard.changeButtonText(false);
     });
-    api.getUserData().then((result)=>console.log(result))
-    popupWithForm.close();
-  formValidators['addCard'].resetValidation();
 }
 
 //*edit profile button
 function handlePopupProfileSubmit(data){
   const {accountName, accountProf} = data;
-  userInfo.setUserInfo(accountName, accountProf, avatar.src);
-  popupUserInfo.buttonLoading(true);
+  popupUserInfo.changeButtonText(true);
   api.editUserInfo(accountName, accountProf)
   .then(()=>{
+    userInfo.setUserInfo({name: accountName, job: accountProf, avatar: userInfo._avatar.src});
     popupUserInfo.close();
-  }).catch((error)=>{console.log(error);})
+  })
+  .catch((error)=>{console.log(error);})
   .finally(() => {
-    popupUserInfo.buttonLoading(false);
+    popupUserInfo.changeButtonText(false);
   });
 }
 
 //*avatar click, editting
 avatar.addEventListener('click', function(){
   popupEditAvatar.open();
+  formValidators['addAvatar'].resetValidation();
 })
 
 //*click trash opens popup, send submit to popup
@@ -159,14 +164,14 @@ function clickOnLike(cardId, card, liked){
 
 //*set new avatar
 function setNewAvatar(link){
-  popupEditAvatar.buttonLoading(true);
+  popupEditAvatar.changeButtonText(true);
   api.setAvatar(link.avatarLink)
   .then(()=>{
-    userInfo.setNewAvatar(link.avatarLink);
+    userInfo.setUserInfo({name: userInfo._name.textContent, job: userInfo._job.textContent, avatar: link.avatarLink});
     popupEditAvatar.close();
   })
   .catch((error)=>{console.log(error);})
   .finally(() => {
-    popupEditAvatar.buttonLoading(false);
+    popupEditAvatar.changeButtonText(false);
   });
 }
